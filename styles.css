@@ -52,6 +52,7 @@ textarea {
 
 code[class*='language-'],
 pre[class*='language-'] {
+  overflow: unset;
   padding: unset;
   white-space: break-spaces;
 }
@@ -101,6 +102,10 @@ small {
   font-size: 14px;
   gap: 8px;
   padding: 8px;
+}
+#status.error {
+  background: #ff69b433;
+  color: hotpink;
 }
 
 #cities,

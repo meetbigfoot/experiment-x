@@ -15,6 +15,7 @@ let schemas = [
     cities: [
       {
         name: 'city name',
+        language: 'native language spoken',
         // description: 'what this city is known for',
       },
     ],
@@ -75,20 +76,24 @@ const turbo = async messages => {
 }
 
 const toJSON = str => {
-  const curly = str.indexOf('{')
-  const square = str.indexOf('[')
-  let first
-  if (curly < 0) first = '[' // only for empty arrays
-  else if (square < 0) first = '{'
-  else first = curly < square ? '{' : '['
-  const last = first === '{' ? '}' : ']'
-  // ensure JSON is complete
-  let count = 0
-  for (c of str) {
-    if (c === '{' || c === '[') count++
-    else if (c === '}' || c === ']') count--
+  try {
+    const curly = str.indexOf('{')
+    const square = str.indexOf('[')
+    let first
+    if (curly < 0) first = '[' // only for empty arrays
+    else if (square < 0) first = '{'
+    else first = curly < square ? '{' : '['
+    const last = first === '{' ? '}' : ']'
+    // ensure JSON is complete
+    let count = 0
+    for (c of str) {
+      if (c === '{' || c === '[') count++
+      else if (c === '}' || c === ']') count--
+    }
+    if (!count) return JSON.parse(str.slice(str.indexOf(first), str.lastIndexOf(last) + 1))
+  } catch (error) {
+    renderError(error)
   }
-  if (!count) return JSON.parse(str.slice(str.indexOf(first), str.lastIndexOf(last) + 1))
 }
 
 // END copied from Experiment #6
@@ -139,6 +144,7 @@ const makeMagic = () => {
         makeMagic()
       } else {
         g('status-loader').classList.remove('dot-pulse')
+        g('status-text').textContent = 'Done'
       }
     })
   } catch (error) {
