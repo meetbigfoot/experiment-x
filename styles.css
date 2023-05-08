@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap');
+
+:root {
+  --primary-color: #00b398;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  color: #00333d;
+  font: 400 100%/1 'DM Sans', -apple-system, Helvetica, sans-serif;
+  letter-spacing: 0.02em;
+  margin: 0;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3 {
+  letter-spacing: -0.02em;
+  margin: 2rem 0 0.5rem;
+}
+
+button,
+textarea {
+  border: 1px solid #00333d66;
+  border-radius: 4px;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  padding: 8px;
+  text-rendering: inherit;
+}
+
+p,
+textarea {
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0 0 1rem;
+  opacity: 0.7;
+}
+
+button {
+  cursor: pointer;
+}
+textarea {
+  width: 100%;
+}
+
+code[class*='language-'],
+pre[class*='language-'] {
+  padding: unset;
+  white-space: break-spaces;
+}
+
+/* begin custom layout */
+
+body {
+  display: flex;
+  min-height: 100vh;
+  overflow: hidden;
+}
+body > div {
+  flex: 1;
+  height: 100vh;
+  overflow-y: scroll;
+  padding: 1rem;
+}
+
+#output {
+  align-items: flex-start;
+  background: #1d262f;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 1rem;
+}
+
+small {
+  background: #00333d11;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 4px 6px;
+  text-transform: uppercase;
+}
+#output small {
+  background: #fff2;
+}
+
+#status {
+  align-items: center;
+  background: #fff2;
+  border-radius: 4px;
+  display: flex;
+  font-size: 14px;
+  gap: 8px;
+  padding: 8px;
+}
+
+#cities {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.area {
+  margin-left: 2rem;
+}
+.first {
+  color: var(--primary-color);
+}
+
+@media (min-width: 768px) {
+  body > div {
+    padding: 2rem;
+  }
+}
+
+/** via https://github.com/nzbin/three-dots/blob/master/dist/three-dots.css
+ * ==============================================
+ * Dot Pulse
+ * ==============================================
+ */
+.dot-pulse {
+  animation: 1.5s linear 0.25s infinite dot-pulse;
+  border-radius: 5px;
+  color: var(--primary-color);
+  height: 10px;
+  left: -49px;
+  margin: 0 1rem;
+  position: relative;
+  width: 10px;
+}
+.dot-pulse::before,
+.dot-pulse::after {
+  border-radius: 5px;
+  content: '';
+  display: inline-block;
+  height: 10px;
+  position: absolute;
+  top: 0;
+  width: 10px;
+}
+.dot-pulse::before {
+  animation: 1.5s linear 0s infinite dot-pulse-before;
+}
+.dot-pulse::after {
+  animation: 1.5s linear 0.5s infinite dot-pulse-after;
+}
+
+@keyframes dot-pulse-before {
+  0% {
+    box-shadow: 34px 0 0 -5px;
+  }
+  30% {
+    box-shadow: 34px 0 0 2px;
+  }
+  60%,
+  100% {
+    box-shadow: 34px 0 0 -5px;
+  }
+}
+@keyframes dot-pulse {
+  0% {
+    box-shadow: 49px 0 0 -5px;
+  }
+  30% {
+    box-shadow: 49px 0 0 2px;
+  }
+  60%,
+  100% {
+    box-shadow: 49px 0 0 -5px;
+  }
+}
+@keyframes dot-pulse-after {
+  0% {
+    box-shadow: 64px 0 0 -5px;
+  }
+  30% {
+    box-shadow: 64px 0 0 2px;
+  }
+  60%,
+  100% {
+    box-shadow: 64px 0 0 -5px;
+  }
+}

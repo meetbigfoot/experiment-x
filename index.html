@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Experiment X</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <link rel="stylesheet" href="https://unpkg.com/prism-themes/themes/prism-duotone-sea.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <script defer crossorigin="anonymous" src="https://kit.fontawesome.com/0bef9420dc.js"></script>
+    <script defer src="https://unpkg.com/prismjs/prism.js"></script>
+    <script defer src="https://unpkg.com/prismjs/plugins/autoloader/prism-autoloader.js"></script>
+    <script defer src="scripts.js"></script>
+  </head>
+  <body>
+    <div id="story">
+      <small>Story</small>
+      <h1>Experiment X</h1>
+      <p>An interactive narrative outlining the intersection of generative AI and our product.</p>
+      <button id="run">Generate Bigfoot-like site</button>
+      <h2>What is Bigfoot?</h2>
+      <p>Each of the following sections will use generative AI to satisfy a specific piece of our product puzzle.</p>
+      <h3>A domain</h3>
+      <p>
+        For the purposes of this proof of concept, we’ll treat our domain, our name, our brand, our voice, and our
+        language as inconsequential.
+      </p>
+      <h3>A curated list of cities</h3>
+      <p>Can generative AI do this? Surely.</p>
+      <textarea>list your 3 favorite cities</textarea>
+      <h3>A curated list of areas</h3>
+      <textarea>pick one of the cities and add 3 top local areas where there are many things to do</textarea>
+      <h3>A bridge</h3>
+      <p>Between our content and our visitor.</p>
+    </div>
+    <div id="output">
+      <small>Output</small>
+      <div id="status">
+        <div id="status-loader"></div>
+        <div id="status-text">Awaiting run sequence…</div>
+      </div>
+      <pre><code class="language-json" id="object"></code></pre>
+    </div>
+    <div id="preview">
+      <small>Preview</small>
+      <div id="render"></div>
+    </div>
+  </body>
+</html>
