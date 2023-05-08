@@ -103,7 +103,8 @@ small {
   padding: 8px;
 }
 
-#cities {
+#cities,
+#cats {
   display: flex;
   flex-direction: column;
   gap: 4px;

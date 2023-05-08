@@ -39,6 +39,19 @@ let schemas = [
       },
     ],
   },
+  {
+    city: 'same city name as before',
+    areas: [
+      {
+        name: 'local area name',
+        queries: [
+          {
+            name: 'popular search keywords',
+          },
+        ],
+      },
+    ],
+  },
 ]
 
 let history = [
@@ -105,7 +118,14 @@ const makeMagic = () => {
       if (json.hasOwnProperty('areas')) {
         data.cities = data.cities.map(city => {
           if (city.name === json.city) {
-            city.areas = json.areas
+            if (json.areas[0].hasOwnProperty('queries')) {
+              city.areas = city.areas.map((area, i) => {
+                area.queries = json.areas[i].queries
+                return area
+              })
+            } else {
+              city.areas = json.areas
+            }
           }
           return city
         })
@@ -179,6 +199,23 @@ const renderPreview = () => {
         map.id = 'map'
         g('render').appendChild(map)
         renderMap([first.longitude, first.latitude])
+      }
+
+      if (first.hasOwnProperty('queries')) {
+        const h2 = document.createElement('h2')
+        h2.textContent = `Popular searches`
+        g('render').appendChild(h2)
+
+        const cats = document.createElement('div')
+        cats.id = 'cats'
+        g('render').appendChild(cats)
+
+        first.queries.forEach(query => {
+          const cat = document.createElement('a')
+          cat.href = '#'
+          cat.textContent = query.name
+          cats.appendChild(cat)
+        })
       }
     }
   })
