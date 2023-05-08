@@ -115,6 +115,12 @@ small {
   color: var(--primary-color);
 }
 
+#map {
+  border-radius: 1rem;
+  height: 400px;
+  width: 100%;
+}
+
 @media (min-width: 768px) {
   body > div {
     padding: 2rem;

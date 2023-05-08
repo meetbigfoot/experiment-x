@@ -28,6 +28,17 @@ let schemas = [
       },
     ],
   },
+  {
+    city: 'same city name as before',
+    areas: [
+      {
+        name: 'local area name',
+        address: '1234 Main St.',
+        latitude: 45.67,
+        longitude: -123.45,
+      },
+    ],
+  },
 ]
 
 let history = [
@@ -149,23 +160,40 @@ const renderPreview = () => {
         cities.appendChild(area)
       })
 
+      const first = c.areas[0]
+
       const areah1 = document.createElement('h1')
-      areah1.textContent = c.areas[0].name
+      areah1.textContent = `Things to do in ${first.name}`
       g('render').appendChild(areah1)
 
       const areaDesc = document.createElement('p')
-      areaDesc.textContent = c.areas[0].description
+      areaDesc.textContent = first.description
       g('render').appendChild(areaDesc)
 
-      const h2 = document.createElement('h2')
-      h2.textContent = `Things to do in ${c.areas[0].name}`
-      g('render').appendChild(h2)
+      if (first.hasOwnProperty('address')) {
+        const h2 = document.createElement('h2')
+        h2.textContent = `Places to go`
+        g('render').appendChild(h2)
 
-      const nextUp = document.createElement('p')
-      nextUp.textContent = 'Coming soon…'
-      g('render').appendChild(nextUp)
+        const map = document.createElement('div')
+        map.id = 'map'
+        g('render').appendChild(map)
+        renderMap([first.longitude, first.latitude])
+      }
     }
   })
+}
+
+const renderMap = coordsArray => {
+  mapboxgl.accessToken = 'pk.eyJ1IjoibWF0dGJvcm4iLCJhIjoiY2w1Ym0wbHZwMDh3eTNlbnh1aW51cm0ydyJ9.Z5h4Vkk8zqjf6JydrOGXGA'
+  const map = new mapboxgl.Map({
+    center: coordsArray,
+    container: 'map',
+    style: 'mapbox://styles/mapbox/light-v11',
+    zoom: 14,
+  })
+  map.addControl(new mapboxgl.NavigationControl())
+  const marker = new mapboxgl.Marker().setLngLat(coordsArray).addTo(map)
 }
 
 // categories
